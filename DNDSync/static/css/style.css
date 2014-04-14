@@ -134,7 +134,7 @@ banner img{
     width: 78%;
 }
 
-.content h1 {
+.content h1#pageHeader {
     width: 100%;
     padding-bottom: 3px;
     border-bottom: 1px solid #555;

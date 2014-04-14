@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block head_title %}{{ page.title }}{% endblock %}
+
+{% block pageTitle %}Testing{% endblock %}
+
+{% block headerInsert %}
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600" rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}css/login.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="http://codecanyon.makeitreal.cz/001-usable-css-login-and-register-form-js/js/script.js"></script>
+<script src="{{ STATIC_URL }}jquery/login.js" type="text/javascript"></script>
+{% endblock %}
+<!-- CSS code for IE Browser -->
+  <!--[if lt IE 10]>
+    <link href="http://codecanyon.makeitreal.cz/001-usable-css-login-and-register-form-js/css/form-style-ie.css" rel="stylesheet" type="text/css" />  
+  <![endif]-->
+
+{% block pageContent %}
+
+
+
+    <div class='form'>
+      <!-- Span class ie-placeholder is there for IE browser. IE doesn't support placeholder attribute -->
+      <form class='input-form' id='sign-in-form' method='post' action="{% url 'users_login' %}?next={{ redirect_to }}">
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="hidden" id="login_error" name="login_error" value="{{ login_error|default:'0' }}" />
+
+        <span class='ie-placeholders'>Login:</span><input type='text' id='ipt-login' name='username' placeholder='Login' value="{{ username }}" />
+        <span class='ie-placeholders'>Password:</span><input type='password' id='ipt-password' name='password' placeholder='Password' />
+        <a class='forgotten-password-link'>Forgotten password</a>
+        <input type='submit' class='btn-sign-in btn-orange' value='Sign in' />
+      </form>
+      
+      <!-- FORGOTTEN PASSWORD -->
+      <div class='forgotten-password-box'>
+        <form class='input-form' id='forgotten-password-form' action=''>
+          <span class='ie-placeholders'>Email:</span><input type='text' id='ipt-fp-email' class='forgotten-password-email' placeholder='E-mail' />
+          <input type='submit' class='btn-orange' value='Send' /><br /><br />
+          We'll send you e-mail with password reset.
+        </form>
+      </div>
+      
+      <!-- ERROR STATE -->
+      <div class='error-box red'>
+        <span class='error-message'>Incorrect login or password.</span>
+      </div>
+           
+      <div class='sign-link'>
+        Don't have an account? <a href='registration.html'>Sign up</a>
+      </div> 
+    </div>
+
+{% comment %}
+
+<p>
+{{ state }}
+	<form action="{% url 'users_login' %}?next={{ redirect_to }}" method="post">
+	  {% csrf_token %}
+		{% if next %}
+		<input type="hidden" name="next" value="{{ next }}" />
+		{% endif %}
+		Username:
+		<input type="text" name="username" value="{{ username}}" /><br />
+		Password:
+		<input type="password" name="password" value="" /><br />
+		<input type="hidden" name="next" value="{{ next }}" />
+        
+		<input type="submit" value="Log In" />
+	</form>
+</p>
+
+{% endcomment %}
+
+
+
+
+{% endblock %}

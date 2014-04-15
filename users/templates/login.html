@@ -22,19 +22,20 @@
       <!-- Span class ie-placeholder is there for IE browser. IE doesn't support placeholder attribute -->
       <form class='input-form' id='sign-in-form' method='post' action="{% url 'users_login' %}?next={{ redirect_to }}">
         <input type="hidden" name="next" value="{{ next }}" />
+        <input type="hidden" name="loginError" id="loginError" value="{{ loginError }}" />
         <input type="hidden" id="login_error" name="login_error" value="{{ login_error|default:'0' }}" />
 
-        <span class='ie-placeholders'>Login:</span><input type='text' id='ipt-login' name='username' placeholder='Login' value="{{ username }}" />
+        <span class='ie-placeholders'>Login:</span><input type='text' id='ipt-login' name='username' placeholder='Character Name' value="{{ charName }}"/>
         <span class='ie-placeholders'>Password:</span><input type='password' id='ipt-password' name='password' placeholder='Password' />
         <a class='forgotten-password-link'>Forgotten password</a>
-        <input type='submit' class='btn-sign-in btn-orange' value='Sign in' />
+        <input type='submit' class='btn-sign-in btn-custom' value='Sign in' />
       </form>
       
       <!-- FORGOTTEN PASSWORD -->
       <div class='forgotten-password-box'>
         <form class='input-form' id='forgotten-password-form' action=''>
           <span class='ie-placeholders'>Email:</span><input type='text' id='ipt-fp-email' class='forgotten-password-email' placeholder='E-mail' />
-          <input type='submit' class='btn-orange' value='Send' /><br /><br />
+          <input type='submit' class='btn-custom' value='Send' /><br /><br />
           We'll send you e-mail with password reset.
         </form>
       </div>

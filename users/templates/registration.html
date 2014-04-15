@@ -22,13 +22,13 @@
 
     <div class="form">
       <form class="input-form" id="registration-form" method="post" action="{% url 'users_registration' %}?next={{ redirect_to }}">
+        <input type="hidden" name="regError" id="regError" value="{{ regError }}" />
         <span class="ie-placeholders">Character Name:</span><input type="text" name="charName" placeholder="Character Name" id="ipt-charName" />
-        <span class="ie-placeholders">Login:</span><input type="text" name="login" placeholder="Login" id="ipt-login" />
         <span class="ie-placeholders">E-mail:</span><input type="text" name="email" placeholder="E-mail" id="ipt-email" />
         <span class="ie-placeholders">Password:</span><input type="password" name="password" placeholder="Password" id="ipt-password" />
         <span class="ie-placeholders">Retype Pass:</span><input type="password" placeholder="Retype password" id="ipt-repassword" /><br />
         <input type="checkbox" id="tac-checkbox" /><label for="tac-checkbox">I agree with <a href="#">terms and conditions</a></label>
-        <input type="submit" class="btn-register btn-orange" value="Register" />
+        <input type="submit" class="btn-register btn-custom" value="Register" />
       </form>
       
       <!-- ERROR STATE -->
@@ -37,7 +37,7 @@
       </div>
       
       <div class="sign-link">
-        Already have an account? <a href="signin.html">Sign in</a>
+        Already have an account? <a href="login.html">Sign in</a>
       </div>
     </div>
 

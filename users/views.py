@@ -4,28 +4,82 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
+#from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
-from users.models import User
+from django.db import IntegrityError
 
 def index(request):
     return render_to_response('index.html',
             page_info,            
             context_instance=RequestContext(request)
             )
-    
+
+def user_registration(request):
+    if request.POST:
+        charName = request.POST.get('charName')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        next_page = request.POST.get('next')
+        try:
+            
+            if authenticate(username=charName, password=password) is not None:
+                user = User.objects.create_user(username=charName, email=email, password=password)
+                user.save()
+            else:
+                return render_to_response('registration.html',
+                                          {'regError':'An account with this information exists already'},
+                                          context_instance=RequestContext(request)
+                                          )
+        except IntegrityError:
+            return render_to_response('registration.html',
+                                      {'regError':'An account with this information exists already'},
+                                  context_instance=RequestContext(request)
+                                  )
+
+        user = authenticate(username=charName, password=password)
+        if user is not None:
+            print "Logging in"
+            login(request, user)
+            return HttpResponseRedirect('/')
+
+        print "Going back to registration page"
+    return render_to_response('registration.html',
+                              context_instance=RequestContext(request)
+                              )
+
+
+def user_logout(request):    
+    redirect_to = request.REQUEST.get('next', '')
+    logout(request)
+    return HttpResponseRedirect(redirect_to or '/')
+
+
     
 def user_login(request):
-    user_profile = request.user.get_profile()
-    redirect_to = request.REQUEST.get('next', '')
+    if not request.POST:
+        return render_to_response('login.html',
+                                  context_instance=RequestContext(request)
+                                  )
 
-    if not user_profile:
-            return render_to_response('login.html',
-            context_instance=RequestContext(request)
-            )
-    else:
-        return HttpResponseRedirect(redirect_to)
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    redirect_to = request.REQUEST.get('next', '')
+    user = authenticate(username=username, password=password)
+
+    if user is not None:
+        login(request, user)
+        print("User is valid, active and authenticated")
+        return HttpResponseRedirect(redirect_to or '/')
+
+    print user
+    print("There is a problem with your username or password.")
+    return render_to_response('login.html',
+                              {'loginError':"There is a problem with your username or password."},
+                              context_instance=RequestContext(request)
+                              )
 
 
 def user_login_old(request):
@@ -69,7 +123,7 @@ def user_login_old(request):
             )
     
 
-def user_registration(request):
+def user_registration_old(request):
     state = "Please log in below..."
     username = password = charName = ''
     redirect_to = request.REQUEST.get('next', '')
@@ -112,10 +166,3 @@ def user_registration(request):
             page_info,    
             context_instance=RequestContext(request)
             )
-    
-
-
-def user_logout(request):
-    django.contrib.auth.logout(request)
-    return redirect("users_login")
-

@@ -33,11 +33,13 @@
   <ul id="nav">
 
     <li><a href="/">Home</a></li>  
-
+    
+    {% if user.is_authenticated %}
+    <li><a href="/admin/">Admin</a></li>
+    <li><a href="/users/logout.html">Logout</a></li>
+    {% else %}
     <li><a href="/users/login.html">Login</a></li>  
-
-    <li><a href="/users/logout.html">Logout</a></li>  
-
+    {% endif %}
   </ul><!-- ending nav -->
 
 

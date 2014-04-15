@@ -1,4 +1,16 @@
 $(document).ready(function () {
+    var loginError = $("#loginError").val();
+    var regError =  $("#regError").val();
+    if ( loginError != '' && loginError != null) {
+        //console.log(loginError);
+        $('.error-box').slideDown('slow').removeClass('green').addClass('red');
+        $(".error-message").text("Invalid username or password")
+    }
+    if ( regError!='' && regError != undefined){
+        $('.error-box').slideDown('slow').removeClass('green').addClass('red');
+        $(".error-message").text("Error will robinson")
+    }
+    
     $('.forgotten-password-link').click(function () {
         $('.forgotten-password-box').slideToggle('slow');
         $('.error-box').slideUp('slow');
@@ -16,33 +28,41 @@ $(document).ready(function () {
             if (value_login == "") {
                 $('#ipt-login').addClass('ipt-error');
                 $('.error-box').slideDown('slow').removeClass('green').addClass('red');
-                $(".error-message").text("Incorrect login or password.")
+                $(".error-message").text("Need both username and password.")
             } else if (value_login != "") {
                 $('#ipt-login').removeClass('ipt-error')
             }
             if (value_password == "") {
                 $('#ipt-password').addClass('ipt-error');
                 $('.error-box').slideDown('slow').removeClass('green').addClass('red');
-                $(".error-message").text("Incorrect login or password.")
+                $(".error-message").text("Need both username and password.")
             } else if (value_password != "") {
                 $('#ipt-password').removeClass('ipt-error')
             }
-            return false
+            return false;
         }
     });
     $("#registration-form").submit(function () {
-        var value_login = $("#ipt-login").val();
+        /*var value_login = $("#ipt-login").val();*/
         var value_charName = $("#ipt-charName").val();
         var value_email = $("#ipt-email").val();
         var value_password = $("#ipt-password").val();
         var value_repassword = $("#ipt-repassword").val();
         var email_values = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        
+        if ( $("#regError").val()!='' ){
+            $('.error-box').slideDown('slow').removeClass('green').addClass('red');
+            $(".error-message").text($("#loginError").val())
+        }
+        
         if (value_charName != "") {
             $('#ipt-charName').removeClass('ipt-error')
         }
+        /*
         if (value_login != "") {
             $('#ipt-login').removeClass('ipt-error')
         }
+        */
         if (value_email != "") {
             $('#ipt-email').removeClass('ipt-error')
         }
@@ -55,15 +75,16 @@ $(document).ready(function () {
             $(".error-message").text("Please, fill your correct email.");
             return false
         }
-        if (value_login != "" && value_charName != "" && value_email != "" && value_password != "" && value_repassword == value_password && ($('#tac-checkbox:checked').val() !== undefined)) {
+        if (value_charName != "" && value_email != "" && value_password != "" && value_repassword == value_password && ($('#tac-checkbox:checked').val() !== undefined)) {
             $('#ipt-charName').removeClass('ipt-error');
-            $('#ipt-login').removeClass('ipt-error');
             $('#ipt-email').removeClass('ipt-error');
             $('#ipt-password').removeClass('ipt-error');
             $('#ipt-repassword').removeClass('ipt-error');
             $('.error-box').slideUp('slow');
             return true
         } else {
+            //Console.log("Testing things");
+            /*
             if (value_login == "") {
                 $('#ipt-login').addClass('ipt-error');
                 $('.error-box').slideDown('slow').removeClass('green').addClass('red');
@@ -71,24 +92,25 @@ $(document).ready(function () {
             } else if (value_login != "") {
                 $('#ipt-login').removeClass('ipt-error')
             }
+            */
             if (value_charName == "") {
                 $('#ipt-charName').addClass('ipt-error');
                 $('.error-box').slideDown('slow').removeClass('green').addClass('red');
-                $(".error-message").text("Please, fill all informations.")
+                $(".error-message").text("Please, fill all information.")
             } else if (value_charName != "") {
                 $('#ipt-charName').removeClass('ipt-error')
             }
             if (value_email == "") {
                 $('#ipt-email').addClass('ipt-error');
                 $('.error-box').slideDown('slow').removeClass('green').addClass('red');
-                $(".error-message").text("Please, fill all informations.")
+                $(".error-message").text("Please, fill all information.")
             } else if (value_email != "") {
                 $('#ipt-email').removeClass('ipt-error')
             }
             if (value_password == "") {
                 $('#ipt-password').addClass('ipt-error');
                 $('.error-box').slideDown('slow').removeClass('green').addClass('red');
-                $(".error-message").text("Please, fill all informations.")
+                $(".error-message").text("Please, fill all information.")
             } else if (value_password != "") {
                 $('#ipt-password').removeClass('ipt-error')
             }

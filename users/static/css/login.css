@@ -255,7 +255,7 @@ label {
 }
 
 .btn-orange:hover {
-  background-color: #ff5800;
+  background-color: #FF5800;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ff5800), to(#ff5800));
   background: -webkit-linear-gradient(top, #ff5800, #ff5800);
   background: -moz-linear-gradient(top, #ff5800, #ff5800);
@@ -345,12 +345,12 @@ label {
 
 /*Custom*/
 .btn-custom {
-  background-color: #your_color;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#your_color), to(#your_color));
-  background: -webkit-linear-gradient(top, #your_color, #your_color);
-  background: -moz-linear-gradient(top, #your_color, #your_color);
-  background: -ms-linear-gradient(top, #your_color, #your_color);
-  background: -o-linear-gradient(top, #your_color, #your_color);
+  background-color: #58ACFA;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0040FF), to(#58ACFA));
+  background: -webkit-linear-gradient(top, #0040FF, #58ACFA);
+  background: -moz-linear-gradient(top, #00F, #0000AA);
+  background: -ms-linear-gradient(top, #00F, #0000AA);
+  background: -o-linear-gradient(top, #00F, #0000AA);
   border: 1px solid #your_color;
 }
 

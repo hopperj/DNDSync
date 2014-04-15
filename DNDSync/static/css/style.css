@@ -10,6 +10,7 @@ body {
 .topBar {
     display: inline-block;
     margin-bottom: 0%;
+    padding-bottom: 0;
     margin-top: 1%;
     width: 100%;
 }
@@ -27,6 +28,8 @@ body {
 
 .topBar #title h1{
     font-family: 'Lato', serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;    
     margin-top: 3%;
     margin-bottom: 0;
 }
@@ -70,8 +73,9 @@ body {
 
 banner {
     display: block;
-    margin-horizontal: auto;
     width:100%
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 banner img{
@@ -82,7 +86,7 @@ banner img{
 
 .container {
     display: inline-block;
-    overfloat: hidden;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -99,7 +103,10 @@ banner img{
 }
 
 .sidebar h2 {
-    font-family: 'Lato', serif;
+    font-family: 'gruppo', serif;
+    letter-spacing: 2px;
+    font-weight: 200;
+    font-size: 1.6em;
     /*text-shadow: 5px 0 4px #aaa;*/
     padding: 0;
     margin: 0;
@@ -108,23 +115,43 @@ banner img{
 
 .sidebar ul {
     list-style: none;
-    list-decoration: none;
     padding-left: 8%;
     padding-top: 4%;
-    padding-bottom: 25%;
+    padding-bottom: 10%;
+    margin-bottom: 20%;
     border-left: 1px solid #000;
     border-top: 1px solid #000;
 }
 
-.sidebar a {
-    font-family: 'Lato', serif;
-    fint-weight: 200;
-    font-size: 0.7em;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
-	text-decoration: none;
-
+.sidebar h3 {
+    font-family: 'gruppo', serif;
+    font-weight: 200;
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0;
+    margin-top: 10%;
 }
+
+.sidebar a {
+	text-decoration: none;
+	color: #0000FF;
+}
+
+.sidebar h3 a:visited {
+    color: #0000FF;
+}
+
+.sidebar h3 a:hover {
+    font-size: 1.2em;
+}
+
+
+
+/*****************************************
+
+    General content page
+
+******************************************/
 
 
 
@@ -138,8 +165,6 @@ banner img{
     width: 100%;
     padding-bottom: 3px;
     border-bottom: 1px solid #555;
-    font-family: 'gruppo', serif;
-    font-family: 'Wire One', sans-serif;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
 }

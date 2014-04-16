@@ -1,14 +1,16 @@
 # Create your views here.
 from django.http import HttpResponse
-from django.template import RequestContext
-from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
+from django.template import RequestContext
+from django.shortcuts import render_to_response, get_object_or_404, redirect
+
 from django.contrib.auth import authenticate, login, logout
-#from django.contrib.auth import logout
 from django.contrib.auth.models import User
+
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
+
 from django.db import IntegrityError
 
 def index(request):
@@ -19,21 +21,25 @@ def index(request):
 
 def user_registration(request):
     if request.POST:
+        print "Processing new user form"
         charName = request.POST.get('charName')
         email = request.POST.get('email')
         password = request.POST.get('password')
         next_page = request.POST.get('next')
         try:
-            
-            if authenticate(username=charName, password=password) is not None:
+            print "Testing authenticate"
+            if authenticate(username=charName, password=password) is None:
                 user = User.objects.create_user(username=charName, email=email, password=password)
                 user.save()
+                print "User saved"
             else:
+                print "Must have been another user"
                 return render_to_response('registration.html',
                                           {'regError':'An account with this information exists already'},
                                           context_instance=RequestContext(request)
                                           )
         except IntegrityError:
+            print "Integrity Error"
             return render_to_response('registration.html',
                                       {'regError':'An account with this information exists already'},
                                   context_instance=RequestContext(request)

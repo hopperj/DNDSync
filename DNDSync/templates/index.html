@@ -1,13 +1,124 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
-{% block pageTitle %}Home{% endblock %}
+{% block pageTitle %}{{ character.charName }}{% endblock %}
+
+{% block headerInsert %}
+<link rel="stylesheet" href="{% static 'css/diceRoll.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'css/characterManager.css' %}" type="text/css" media="screen" />
+<script src="{% static 'js/diceRoll.js' %}"></script>
+
+<script src="{% static 'js/jquery.jeditable.js' %}"></script>
+{% comment %}
+{% endcomment %}
+<script src="{% static 'js/characterManager.js' %}"></script>
+{% endblock %}
+
 
 {% block pageContent %}
+<div class="characterStats">
+
+<div class="rowLeft">
+
+<div class="defStat">
+    <div id="name">HP</div><!-- end .name -->
+    <div class="edit" id="currentHP">{{ character.currentHP }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+  <div class="defStat">
+    <div id="name">TempHP</div><!-- end .name -->
+    <div class="edit" id="currentTempHP">{{ character.currentTempHP }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+  <div class="defStat">
+    <div id="name">MaxHP</div><!-- end .name -->
+    <div class="edit" id="maxHP">{{ character.maxHP }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+</div><!-- end .rowLeft -->
 
 
-{{ user.username }}
 
 
+  
+<div class="rowRight">
+  <div class="defStat">
+    <div id="name">AC</div><!-- end .name -->
+    <div class="edit" id="ac">{{ character.ac }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+  <div class="defStat">
+    <div id="name">Fort</div><!-- end .name -->
+    <div class="edit" id="fort">{{ character.fort }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+  <div class="defStat">
+    <div id="name">Will</div><!-- end .name -->
+    <div class="edit" id="will">{{ character.will }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+  <div class="defStat">
+    <div id="name">Ref</div><!-- end .name -->
+    <div class="edit" id="ref">{{ character.ref }}</div><!-- end .value -->
+  </div><!-- end .defStat -->
+
+</div><!-- end .rowRight -->
+
+<div class="rowClear">
+</div><!-- end rowClear -->
+
+<div class="rowFull">
+
+<div class="notes"> 
+  <div class="edit_area" id="notes">
+  {{ character.notes.value }}
+  </div>
+  {% comment %}
+  <ul id="notes_list">
+    {% for note in character.notes %}
+      <li>{{ note.value }}</li>
+    {% endfor %}
+  </ul>
+  {% endcomment %}
+</div><!-- end .notes -->
+  
+<div class="journal"> 
+  <div class="edit_area" id="journal">
+  {{ character.journal }}
+  </div>
+</div><!-- end .notes -->
+  
+  
+</div><!-- end rowFull -->
+
+
+
+</div><!-- end .characterStats -->
+{% comment %}
+
+<form id="characterManager">
+
+    <label for="bar">A bar</label>
+    <input id="bar" name="bar" type="text" value="" />
+
+    <input type="submit" value="Send" />
+
+</form>
+
+
+
+
+
+<button class="roll">D4</button>
+<button class="roll">D6</button>
+<button class="roll">D8</button>
+<button class="roll">D10</button>
+<button class="roll">D12</button>
+<button class="roll">D20</button>
+<button class="roll">D30</button>
+<button class="roll">D100</button>
+<div class="die">0</div>
+{% endcomment %}
 
 
 {% endblock %}

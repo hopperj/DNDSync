@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root':'settings.STATIC_ROOT'}),
 
     url(r'^$', 'DNDSync.views.index', name='websiteIndex'),
+    url(r'^updateValues', 'DNDSync.views.updateValues', name='websiteUpdateValues'),
 
     
     )#+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
